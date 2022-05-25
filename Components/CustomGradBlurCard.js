@@ -11,14 +11,17 @@ const { width: windowWidth, height: windowHeight } = Dimensions.get("window")
 const CustomGradBlurCard = () => {
     return (
         <DropShadow style={styles.shadowPropBlack}>
-            <View style={{ borderRadius: 10, position: "relative", height: 150, }}>
+            <View style={{ borderRadius: 10, position: "relative", height: 150, width: "100%" }}>
                 {/* <Image source={require("../images/4.png")} style={[styles.img, styles.abs]} /> */}
-                <View style={{ borderRadius: 10, overflow: "hidden", }}>
+                <View style={{ borderRadius: 10, overflow: "hidden", width: "100%" }}>
                     <BlurView
                         blurType='light'
                         overlayColor='transparent'
                         blurAmount={20}
-                        style={{ width: "100%", height: "100%", alignItems: "center", justifyContent: "center", position: "relative" }}>
+                        style={{
+                            width: "100%", height: "100%", alignItems: "center",
+                            justifyContent: "center", position: "relative"
+                        }}>
 
                         <LinearGradient
                             style={{
