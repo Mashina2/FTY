@@ -38,7 +38,11 @@ const App = () => {
         <Stack.Screen name="Notifications" component={Notification} />
       </Stack.Navigator> */}
 
-          <Drawer.Navigator>
+          <Drawer.Navigator
+            screenOptions={{
+              headerShown: false
+            }}
+          >
             <Drawer.Screen name="Home" component={Home} />
             <Drawer.Screen name="Notifications" component={Notification} />
           </Drawer.Navigator>
