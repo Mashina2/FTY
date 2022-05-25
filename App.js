@@ -12,6 +12,10 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
+import * as eva from '@eva-design/eva';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
+import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+// import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
 
 
 const Stack = createNativeStackNavigator();
@@ -24,23 +28,28 @@ const Tab = createMaterialBottomTabNavigator();
 
 const App = () => {
   return (
-    <NavigationContainer>
+    <>
+      <IconRegistry icons={EvaIconsPack} />
+      <ApplicationProvider {...eva} theme={eva.light}>
+        <NavigationContainer>
 
-      {/* <Stack.Navigator>
+          {/* <Stack.Navigator>
         <Stack.Screen name="Home" component={Home} />
         <Stack.Screen name="Notifications" component={Notification} />
       </Stack.Navigator> */}
 
-      <Drawer.Navigator>
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Notifications" component={Notification} />
-      </Drawer.Navigator>
+          <Drawer.Navigator>
+            <Drawer.Screen name="Home" component={Home} />
+            <Drawer.Screen name="Notifications" component={Notification} />
+          </Drawer.Navigator>
 
-      {/* <Tab.Navigator>
+          {/* <Tab.Navigator>
         <Tab.Screen name="Home" component={Home} />
         <Tab.Screen name="Settings" component={Notification} />
       </Tab.Navigator> */}
-    </NavigationContainer>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
   )
 }
 
