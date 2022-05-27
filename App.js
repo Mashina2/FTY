@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 
-import { View, Text, SafeAreaView } from 'react-native'
+import { View, Text, SafeAreaView, LogBox } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
 import Home from "./Screens/Home"
@@ -15,7 +15,12 @@ import { createMaterialTopTabNavigator } from '@react-navigation/material-top-ta
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import Parameters from './Screens/Parameters';
+import FAQ from './Screens/FAQ';
+import StrategiesList from './Screens/StrategiesList';
+import MyOrders from './Screens/MyOrders';
 
+LogBox.ignoreAllLogs();
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -38,6 +43,9 @@ const RootStackScreen = () => (
   >
     <RootStack.Screen name="Home" component={Home} />
     <RootStack.Screen name="Notifications" component={Notification} />
+    <RootStack.Screen name="StrategiesList" component={StrategiesList} />
+    <RootStack.Screen name="FAQ" component={FAQ} />
+    <RootStack.Screen name="MyOrders" component={MyOrders} />
   </RootStack.Navigator>
 )
 

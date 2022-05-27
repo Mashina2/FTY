@@ -12,7 +12,7 @@ const CustomGradBlurCard = () => {
     return (
         <DropShadow style={styles.shadowPropBlack}>
             <View style={{ borderRadius: 10, position: "relative", height: 150, width: "100%" }}>
-                {/* <Image source={require("../images/4.png")} style={[styles.img, styles.abs]} /> */}
+                {/* <Image source={require("../images/4.jpg")} style={[styles.img, styles.abs]} /> */}
                 <View style={{ borderRadius: 10, overflow: "hidden", width: "100%" }}>
                     <BlurView
                         blurType='light'

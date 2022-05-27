@@ -88,7 +88,7 @@ const Home = ({ navigation }, props) => {
                 }} />
             </TouchableOpacity>
             <TouchableOpacity >
-              <Image source={require("../images/4.png")}
+              <Image source={require("../images/4.jpg")}
                 style={{
                   width: 32,
                   height: 32,
