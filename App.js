@@ -19,6 +19,9 @@ import Parameters from './Screens/Parameters';
 import FAQ from './Screens/FAQ';
 import StrategiesList from './Screens/StrategiesList';
 import MyOrders from './Screens/MyOrders';
+import General from './Screens/General';
+import AutomateBTC from './Screens/AutomateBTC';
+import AutomateETH from './Screens/AutomateETH';
 
 LogBox.ignoreAllLogs();
 
@@ -28,7 +31,31 @@ const Drawer = createDrawerNavigator();
 
 // // const Tab = createBottomTabNavigator();
 // const Tab = createMaterialBottomTabNavigator();
-// // const Tab = createMaterialTopTabNavigator();
+const Tab = createMaterialTopTabNavigator();
+
+const TabNavigator = () => (
+  <Tab.Navigator>
+
+    <Tab.Screen
+      name="General"
+      component={General}
+
+    />
+
+    <Tab.Screen
+      name="Automate BTC"
+      component={AutomateBTC}
+
+    />
+
+    <Tab.Screen
+      name="Automate ETH"
+      component={AutomateETH}
+
+    />
+  </Tab.Navigator>
+)
+
 
 const RootStack = createStackNavigator();
 
@@ -62,8 +89,11 @@ const App = () => {
               headerShown: false
             }}
           >
-            <Drawer.Screen name="HomeD" component={RootStackScreen} />
-            <Drawer.Screen name="Notifications" component={Notification} />
+            <Drawer.Screen name="Tableau de bord" component={RootStackScreen} />
+            <Drawer.Screen name="Paramètre" component={TabNavigator} />
+            <Drawer.Screen name="Mes Ordres" component={MyOrders} />
+            <Drawer.Screen name="Liste des stratégies" component={StrategiesList} />
+            <Drawer.Screen name="FAQs" component={FAQ} />
           </Drawer.Navigator>
         </NavigationContainer>
       </ApplicationProvider>

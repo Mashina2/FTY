@@ -48,6 +48,7 @@ const CustomGradBlurCard = () => {
 
     )
 }
+
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "rgba(55,55,55,.5)",

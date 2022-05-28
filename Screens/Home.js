@@ -66,7 +66,7 @@ const Home = ({ navigation }, props) => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "rgb(23, 23, 22)", flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: "rgb(8,8,8)", flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container} >
         <View style={{
           flexDirection: "row", display: "flex",
@@ -98,7 +98,7 @@ const Home = ({ navigation }, props) => {
           </View>
         </View>
         <View style={{ width: "100%", height: 220, marginTop: 20, position: "relative" }}>
-          <View style={{ width: "100%", height: 180, }}>
+          <View style={{ width: "100%", height: 190, }}>
             <Carousel
               // ref={(c) => { this._carousel = c; }}
               // layout={'tinder'}
