@@ -66,7 +66,7 @@ const Home = ({ navigation }, props) => {
   }
 
   return (
-    <SafeAreaView style={{ backgroundColor: "rgb(8,8,8)", flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: "#1a202c", flex: 1 }}>
       <ScrollView contentContainerStyle={styles.container} >
         <View style={{
           flexDirection: "row", display: "flex",
@@ -158,9 +158,9 @@ const Home = ({ navigation }, props) => {
             yAxisInterval={1} // optional, defaults to 1
             chartConfig={{
 
-              backgroundColor: "red",
-              backgroundGradientFrom: "orange",
-              backgroundGradientTo: "orangered",
+              backgroundColor: "#4fd1c5",
+              backgroundGradientFrom: "#4fd1c5",
+              backgroundGradientTo: "#285e61",
               decimalPlaces: 2, // optional, defaults to 2dp
               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -195,9 +195,9 @@ const Home = ({ navigation }, props) => {
             radius={32}
             chartConfig={{
 
-              backgroundColor: "red",
-              backgroundGradientFrom: "orange",
-              backgroundGradientTo: "orangered",
+              backgroundColor: "#4fd1c5",
+              backgroundGradientFrom: "#4fd1c5",
+              backgroundGradientTo: "#285e61",
               decimalPlaces: 2, // optional, defaults to 2dp
               color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
               labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
@@ -228,7 +228,6 @@ const styles = StyleSheet.create({
   container: {
     paddingTop: 30,
     paddingBottom: 15,
-    backgroundColor: "rgb(23, 23, 22)",
     // flex: 1
   },
 

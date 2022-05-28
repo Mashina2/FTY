@@ -10,12 +10,12 @@ const General = () => {
     const [mail, setMail] = React.useState("CHDLJIGHRTERMKSDGKRHNGRE-DKFGBDFGHDFUOGMDFHUH201SFSDJF")
     const [privateMail, setPrivateMail] = React.useState("CHDLJIGHRTER")
     return (
-        <SafeAreaView style={{ backgroundColor: "rgb(8,8,8)", flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: "#1a202c", flex: 1 }}>
             <ScrollView contentContainerStyle={{ paddingTop: 25, paddingHorizontal: 25 }}>
                 <Text style={{ color: "white", fontSize: 18, fontWeight: "bold", marginBottom: 10 }}>Clés Binance</Text>
                 <DropShadow style={styles.shadowPropBlack}>
                     <View style={{
-                        backgroundColor: "rgb(60,60,60)", padding: 18,
+                        backgroundColor: "#2d3748", padding: 18,
                         borderRadius: 5, paddingHorizontal: 15
                     }}>
                         <View>
@@ -58,8 +58,8 @@ const General = () => {
                         }}>
                             <TouchableOpacity
                                 activeOpacity={.7}
-                                style={{ backgroundColor: "orange", padding: 10, borderRadius: 5 }}>
-                                <Text style={{ fontWeight: "bold" }}>Configurer les automates</Text>
+                                style={{ backgroundColor: "#319795", padding: 10, borderRadius: 5 }}>
+                                <Text style={{ fontWeight: "bold", color: "white" }}>Configurer les automates</Text>
                             </TouchableOpacity>
                         </View>
                     </View>
@@ -75,7 +75,7 @@ const General = () => {
 
 const styles = StyleSheet.create({
     shadowPropBlack: {
-        shadowColor: 'rgb(5, 5, 5)',
+        shadowColor: 'rgb(3, 3, 3)',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 10,
         shadowRadius: 5,

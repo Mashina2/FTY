@@ -13,7 +13,7 @@ const AutomateETH = () => {
     const [automateChecked, setAutomateChecked] = React.useState(false)
     const [privateMail, setPrivateMail] = React.useState("CHDLJIGHRTER")
     return (
-        <SafeAreaView style={{ backgroundColor: "rgb(8,8,8)", flex: 1 }}>
+        <SafeAreaView style={{ backgroundColor: "#1a202c", flex: 1 }}>
             <ScrollView contentContainerStyle={{ paddingTop: 25, }}>
                 <View style={{ paddingHorizontal: 25 }}>
                     <Text style={{ color: "white", fontSize: 24, fontWeight: "bold", marginBottom: 10 }}>Automate ETH</Text>
@@ -21,7 +21,7 @@ const AutomateETH = () => {
                     <Text style={{ color: "white", fontSize: 15, fontWeight: "bold", marginBottom: 10 }}>Capital à engager</Text>
                     <DropShadow style={styles.shadowPropBlack}>
                         <View style={{
-                            backgroundColor: "rgb(60,60,60)", padding: 18,
+                            backgroundColor: "#2d3748", padding: 18,
                             borderRadius: 5, paddingHorizontal: 15
                         }}>
                             <Text style={{ color: "white", fontWeight: "bold", textAlign: "center", marginBottom: 25 }}>Capital Disponible: 0.00083257 ETH</Text>
@@ -44,7 +44,7 @@ const AutomateETH = () => {
 
                                 <View style={{
                                     position: "absolute", top: 0, left: 0,
-                                    width: "100%", height: "100%", backgroundColor: "rgb(60,60,60)", opacity: .75
+                                    width: "100%", height: "100%", backgroundColor: "#2d3748", opacity: .75
                                 }} />
                             </View>
 
@@ -65,7 +65,7 @@ const AutomateETH = () => {
                                 />
                                 <View style={{
                                     position: "absolute", top: 0, left: 0,
-                                    width: "100%", height: "100%", backgroundColor: "rgb(60,60,60)", opacity: .75
+                                    width: "100%", height: "100%", backgroundColor: "#2d3748", opacity: .75
                                 }} />
                             </View>
 
@@ -75,8 +75,8 @@ const AutomateETH = () => {
                             }}>
                                 <TouchableOpacity
                                     activeOpacity={.7}
-                                    style={{ backgroundColor: "orange", padding: 10, borderRadius: 5 }}>
-                                    <Text style={{ fontWeight: "bold" }}>Configurer les automates</Text>
+                                    style={{ backgroundColor: "#319795", padding: 10, borderRadius: 5 }}>
+                                    <Text style={{ fontWeight: "bold" ,color:"white"}}>Configurer les automates</Text>
                                 </TouchableOpacity>
                             </View>
                         </View>
@@ -114,15 +114,15 @@ const AutomateETH = () => {
 
                     <DropShadow style={[styles.shadowPropBlack, { marginTop: 20 }]}>
                         <View style={{
-                            backgroundColor: "rgb(60,60,60)", padding: 18,
+                            backgroundColor: "#2d3748", padding: 18,
                             borderRadius: 5, paddingHorizontal: 15
                         }}>
                             <View style={{ display: "flex", flexDirection: "row", alignItems: "center", justifyContent: "space-between" }}>
                                 <Text style={{ fontSize: 18, fontWeight: "900", color: "white" }}>Capitaux ajoutés</Text>
                                 <TouchableOpacity
                                     activeOpacity={.7}
-                                    style={{ backgroundColor: "orange", padding: 10, paddingVertical: 5, borderRadius: 5 }}>
-                                    <Text style={{ fontWeight: "bold" }}>Ajouter</Text>
+                                    style={{ backgroundColor: "#319795", padding: 10, paddingVertical: 5, borderRadius: 5 }}>
+                                    <Text style={{ fontWeight: "bold" ,color:"white"}}>Ajouter</Text>
                                 </TouchableOpacity>
                             </View>
 
@@ -153,7 +153,7 @@ const AutomateETH = () => {
 
 const styles = StyleSheet.create({
     shadowPropBlack: {
-        shadowColor: 'rgb(5, 5, 5)',
+        shadowColor: 'rgb(3, 3, 3)',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 10,
         shadowRadius: 5,

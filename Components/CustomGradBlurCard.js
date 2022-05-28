@@ -30,7 +30,7 @@ const CustomGradBlurCard = () => {
                             useAngle={true}
                             angle={250}
                             angleCenter={{ x: 0.5, y: 0.5 }}
-                            colors={["orangered", "orange"]}>
+                            colors={["#4fd1c5", "#1d4044"]}>
                             <View style={{
                                 position: "absolute", left: 0, top: 0, right: 0, bottom: 0,
                                 width: "100%", height: "100%", alignItems: "flex-start", justifyContent: "center",
@@ -84,7 +84,7 @@ const styles = StyleSheet.create({
         textTransform: "capitalize"
     },
     shadowPropBlack: {
-        shadowColor: 'rgb(60, 60, 60)',
+        shadowColor: 'rgb(5, 5, 5)',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 10,
         shadowRadius: 10,

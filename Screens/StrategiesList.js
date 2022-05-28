@@ -14,7 +14,7 @@ const StrategiesList = ({ navigation }) => {
     </TouchableOpacity>)
   }
   return (
-    <SafeAreaView style={{ backgroundColor: "rgb(8,8,8)", flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: "#1a202c", flex: 1 }}>
       <ScrollView
         refreshControl={
           <RefreshControl
@@ -73,14 +73,14 @@ const StrategiesList = ({ navigation }) => {
           end={{ x: 1, y: 1 }}
           useAngle
           angle={45}
-          colors={["#00b588", "#00b577", "blue",]}
+          colors={["#22c35e", "#63b3ed",]}
           style={{ padding: 15, borderRadius: 10, marginTop: 20, paddingVertical: 25 }}>
           <Text style={{ color: "white", fontSize: 22, fontWeight: "bold", marginBottom: 10 }}>Suivez les meilleurs stratégies</Text>
           <Text style={{ color: "white", fontSize: 12, }}>Gagnez quand elles gagnent en reproduisant leurs ordres automatiquement</Text>
         </LinearGradient>
 
         <View style={{ marginTop: 20 }}>
-          <Text style={{ color: "white" }}>Découvrez nos stratégies tendance</Text>
+          <Text style={{ color: "white", fontWeight: "bold" }}>Découvrez nos stratégies tendance</Text>
           {/* <View style={{ flex: 1, backgroundColor: "red", marginTop: 10, height: 30, display: "flex", flexDirection: "row" }}> */}
 
           <View style={{ marginTop: 10 }}>
