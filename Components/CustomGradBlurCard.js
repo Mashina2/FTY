@@ -4,24 +4,25 @@ import React from 'react'
 import { BlurView } from '@react-native-community/blur'
 import LinearGradient from 'react-native-linear-gradient'
 import DropShadow from 'react-native-drop-shadow'
+import { color } from 'react-native-reanimated'
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window")
 
 
-const CustomGradBlurCard = () => {
+const CustomGradBlurCard = ({ colors = ["#4fd1c5", "#1d4044"], title = "", euroPrice = 0, coinPrice = 0, bit = "" }) => {
     return (
         <DropShadow style={styles.shadowPropBlack}>
             <View style={{ borderRadius: 10, position: "relative", height: 150, width: "100%" }}>
                 {/* <Image source={require("../images/4.jpg")} style={[styles.img, styles.abs]} /> */}
                 <View style={{ borderRadius: 10, overflow: "hidden", width: "100%" }}>
-                    <BlurView
+                    {/* <BlurView
                         blurType='light'
                         overlayColor='transparent'
                         blurAmount={20}
                         style={{
                             width: "100%", height: "100%", alignItems: "center",
                             justifyContent: "center", position: "relative"
-                        }}>
+                        }}> */}
 
                         <LinearGradient
                             style={{
@@ -30,18 +31,27 @@ const CustomGradBlurCard = () => {
                             useAngle={true}
                             angle={250}
                             angleCenter={{ x: 0.5, y: 0.5 }}
-                            colors={["#4fd1c5", "#1d4044"]}>
+                            colors={colors}>
                             <View style={{
                                 position: "absolute", left: 0, top: 0, right: 0, bottom: 0,
                                 width: "100%", height: "100%", alignItems: "flex-start", justifyContent: "center",
                                 zIndex: 2, paddingHorizontal: 15
                             }}>
-                                <Text style={{ color: "white", fontSize: 20, lineHeight: 20, marginBottom: 10 }}>96.56 £</Text>
-                                <Text style={{ color: "white", fontSize: 25, lineHeight: 40, fontWeight: "bold", marginBottom: 10 }}>0.0032352164864896 BTC</Text>
-                                <Text style={{ color: "rgb(215, 218, 219)", lineHeight: 18 }}>Montant alloué à l'automate</Text>
+                                <Text style={{
+                                    color: "white", fontSize: 19, lineHeight: 20,
+                                    fontFamily: "Montserrat-Medium"
+                                }}>{euroPrice} £</Text>
+                                <Text style={{
+                                    color: "white", fontSize: 22, lineHeight: 40,
+                                    fontFamily: "Montserrat-Medium", marginBottom: 5
+                                }}>{coinPrice} {bit}</Text>
+                                <Text style={{
+                                    color: "rgb(215, 218, 219)",
+                                    fontFamily: "Montserrat-Medium", lineHeight: 15
+                                }}>{title ? title : "Default Text"}</Text>
                             </View>
                         </LinearGradient>
-                    </BlurView>
+                    {/* </BlurView> */}
                 </View>
             </View>
         </DropShadow>
@@ -84,7 +94,7 @@ const styles = StyleSheet.create({
         textTransform: "capitalize"
     },
     shadowPropBlack: {
-        shadowColor: 'rgb(5, 5, 5)',
+        shadowColor: 'rgb(0, 0, 0)',
         shadowOffset: { width: 0, height: 3 },
         shadowOpacity: 10,
         shadowRadius: 10,

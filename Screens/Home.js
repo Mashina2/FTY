@@ -1,7 +1,7 @@
-import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, SafeAreaView, Dimensions, FlatList } from 'react-native'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity, Image, SafeAreaView, Dimensions, FlatList, RefreshControl } from 'react-native'
 import React from 'react'
 import CustomGradBlurCard from '../Components/CustomGradBlurCard';
-
+import * as Animatable from 'react-native-animatable';
 import { Icon } from '@ui-kitten/components';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import {
@@ -18,25 +18,26 @@ const HEIGHT = Dimensions.get("window").height;
 
 
 const Home = ({ navigation }, props) => {
-  // const [imgActive, setImgActive] = React.useState(0);
   const [activeIndex, setActiveIndex] = React.useState(0);
-  const lister = [0, 1, 2, 3, 4, 5];
+  const lister = [
+    { title: "Montant alloué à l'automate", bit: "BTC", prixEuro: 19.99, prixBitcoin: 0.0036093468, colors: ["orange", "orangered"] },
+    { title: "Montant libre", prixEuro: 19.99, bit: "BTC", prixBitcoin: 0.0036093468, colors: ["orange", "orangered"] },
+    { title: "Montant alloué à l'automate", bit: "ETH", prixEuro: 19.99, prixBitcoin: 0.0036093468, colors: ["#48bb78", "#4299e1",] },
+    { title: "Montant libre", bit: "ETH", prixEuro: 19.99, prixBitcoin: 0.0036093468, colors: ["#48bb78", "#4299e1",] },
+    { title: "Profit BTC", bit: "BTC", prixEuro: 19.99, prixBitcoin: 0.0036093468, colors: ["orange", "orangered"] },
+    { title: "Profit ETH", bit: "ETH", prixEuro: 19.99, prixBitcoin: 0.0036093468, colors: ["#48bb78", "#4299e1",] },
+  ];
+  // ["#48bb78", "#4299e1",]
 
-  const onChange = (nativeEvent) => {
-    if (nativeEvent) {
-      const slide = Math.ceil(nativeEvent.contentOffset.x / nativeEvent.layoutMeasurement.width)
-      if (slide != imgActive) {
-        setImgActive(slide)
-      }
-    }
-  }
-
-  _renderItem = ({ item, index }) => {
+  _renderItem = ({ item }) => {
     return (
-      // <View style={{ height: 200, width: "100%", backgroundColor: "red" }}>
-      //   <Text>Bien</Text>
-      // </View>
-      <CustomGradBlurCard />
+      <CustomGradBlurCard
+        title={item.title}
+        euroPrice={item.prixEuro}
+        coinPrice={item.prixBitcoin}
+        colors={item.colors}
+        bit={item.bit}
+      />
     );
   }
 
@@ -67,19 +68,33 @@ const Home = ({ navigation }, props) => {
 
   return (
     <SafeAreaView style={{ backgroundColor: "#1a202c", flex: 1 }}>
-      <ScrollView contentContainerStyle={styles.container} >
+      <ScrollView
+        // refreshControl={
+        //   <RefreshControl
+        //     refreshing={refreshing}
+        //   />
+        // }
+        contentContainerStyle={styles.container} >
         <View style={{
           flexDirection: "row", display: "flex",
           justifyContent: "space-between", alignItems: "flex-start",
           paddingHorizontal: 20,
         }}>
           <View>
-            <Text style={{ color: "white", fontSize: 25 }}>Hi Superman</Text>
-            <Text style={{ color: "rgb(122, 127, 130)" }}>Your Portolio looks great today</Text>
+            <Text style={{
+              color: "white", fontSize: 20,
+              fontFamily: "Montserrat-Medium",
+            }}>Bonjour Mohamed</Text>
+            <Text style={{
+              color: "rgb(122, 127, 130)",
+              fontFamily: "Montserrat-Medium", fontSize: 12
+            }}>Votre tableau de bord</Text>
           </View>
+
           <View style={[styles.rowedBetween]}>
             <TouchableOpacity
-              onPress={() => navigation.toggleDrawer()}>
+              onPress={() => navigation.toggleDrawer()}
+            >
               <Icon name="menu"
                 style={{
                   width: 28,
@@ -87,7 +102,9 @@ const Home = ({ navigation }, props) => {
                   tintColor: "white",
                 }} />
             </TouchableOpacity>
-            <TouchableOpacity >
+            <TouchableOpacity
+              onPress={() => navigation.navigate("Profile")}
+            >
               <Image source={require("../images/4.jpg")}
                 style={{
                   width: 32,
@@ -97,24 +114,23 @@ const Home = ({ navigation }, props) => {
             </TouchableOpacity>
           </View>
         </View>
-        <View style={{ width: "100%", height: 220, marginTop: 20, position: "relative" }}>
+
+        <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
+          <Text style={{ color: "#38b2ac", fontSize: 16, fontFamily: "Montserrat-Medium", }}>Automate</Text>
+        </View>
+        <View style={{ width: "100%", height: 220, marginTop: 15, position: "relative" }}>
           <View style={{ width: "100%", height: 190, }}>
             <Carousel
-              // ref={(c) => { this._carousel = c; }}
-              // layout={'tinder'}
-              // layoutCardOffset={`9`
               data={lister}
               renderItem={_renderItem}
               sliderWidth={WIDTH}
               itemWidth={WIDTH * .9}
               loop={true}
               autoplay={true}
-              onSnapToItem={(index) => {
-                setActiveIndex(index)
+              onSnapToItem={(item, index) => {
+                setActiveIndex(item)
               }}
-              onLayout={(index) => {
-                setActiveIndex(index)
-              }}
+              keyExtractor={(item, index) => index.toString()}
               style={{ height: 200 }}
             />
           </View>
@@ -122,9 +138,10 @@ const Home = ({ navigation }, props) => {
         </View>
 
 
-        <View style={{ paddingHorizontal: 20 }}>
+        <View
+          style={{ paddingHorizontal: 20 }}>
 
-          <Text style={{ color: "white", fontSize: 20, marginBottom: 10 }}>PNL Quotidien</Text>
+          <Text style={{ color: "white", fontSize: 16, marginBottom: 10, fontFamily: "Montserrat-Medium", }}>PNL Quotidien</Text>
           <LineChart
             data={{
               // labels: ["January", "February", "March", "April", "May", "June"],
@@ -183,7 +200,10 @@ const Home = ({ navigation }, props) => {
         </View>
 
         <View style={{ paddingHorizontal: 20, marginTop: 15 }}>
-          <Text style={{ color: "white", fontSize: 20, marginBottom: 10 }}>Réparation des actifs</Text>
+          <Text style={{
+            color: "white", fontSize: 16, marginBottom: 10,
+            fontFamily: "Montserrat-Medium",
+          }}>Répartition des actifs</Text>
           <ProgressChart
             data={{
               labels: ["ETH", "BTC", "RUNEBTC", "XTZBTC", "NEARBTC"], // optional
@@ -218,7 +238,7 @@ const Home = ({ navigation }, props) => {
             hideLegend={false}
           />
         </View>
-
+        <View style={{ marginBottom: 50 }} />
       </ScrollView>
     </SafeAreaView >
   )

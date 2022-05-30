@@ -1,101 +1,135 @@
 import 'react-native-gesture-handler';
 
-import { View, Text, SafeAreaView, LogBox } from 'react-native'
+import { View, Text, SafeAreaView, LogBox, Image, ActivityIndicator, Dimensions } from 'react-native'
 import React from 'react'
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from "./Screens/Home"
-import Notification from "./Screens/Notification"
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { createDrawerNavigator } from '@react-navigation/drawer';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createDrawerNavigator, } from '@react-navigation/drawer';
 
+import * as Animatable from 'react-native-animatable';
 import * as eva from '@eva-design/eva';
 import { EvaIconsPack } from '@ui-kitten/eva-icons';
 import { ApplicationProvider, IconRegistry } from '@ui-kitten/components';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+import DrawerContent from "./Components/DrawerContent"
+
+import Home from './Screens/Home';
 import Parameters from './Screens/Parameters';
-import FAQ from './Screens/FAQ';
 import StrategiesList from './Screens/StrategiesList';
+import FAQ from './Screens/FAQ';
+import Profile from './Screens/Profile';
 import MyOrders from './Screens/MyOrders';
-import General from './Screens/General';
-import AutomateBTC from './Screens/AutomateBTC';
-import AutomateETH from './Screens/AutomateETH';
+
+import SignIn from './Screens/SignIn';
+import SignUp from './Screens/SignUp';
+import ForgotPassword from './Screens/ForgotPassword';
+
 
 LogBox.ignoreAllLogs();
 
-const Stack = createNativeStackNavigator();
+
 const Drawer = createDrawerNavigator();
-// const Stack = createStackNavigator();
 
-// // const Tab = createBottomTabNavigator();
-// const Tab = createMaterialBottomTabNavigator();
-const Tab = createMaterialTopTabNavigator();
+const RegistrationStack = createStackNavigator();
 
-const TabNavigator = () => (
-  <Tab.Navigator>
-
-    <Tab.Screen
-      name="General"
-      component={General}
-
-    />
-
-    <Tab.Screen
-      name="Automate BTC"
-      component={AutomateBTC}
-
-    />
-
-    <Tab.Screen
-      name="Automate ETH"
-      component={AutomateETH}
-
-    />
-  </Tab.Navigator>
-)
-
-
-const RootStack = createStackNavigator();
-
-const RootStackScreen = () => (
-  <RootStack.Navigator
+const RegistrationStackScreen = () => (
+  <RegistrationStack.Navigator
     screenOptions={{
       headerShown: false
     }}
 
 
-    initialRouteName={'Home'}
+    initialRouteName={'SignIn'}
   >
-    <RootStack.Screen name="Home" component={Home} />
-    <RootStack.Screen name="Notifications" component={Notification} />
-    <RootStack.Screen name="StrategiesList" component={StrategiesList} />
-    <RootStack.Screen name="FAQ" component={FAQ} />
-    <RootStack.Screen name="MyOrders" component={MyOrders} />
-  </RootStack.Navigator>
+    <RegistrationStack.Screen name="SignIn" component={SignIn} />
+    <RegistrationStack.Screen name="SignUp" component={SignUp} />
+    <RegistrationStack.Screen name="ForgotPassword" component={ForgotPassword} />
+  </RegistrationStack.Navigator>
 )
 
 const App = () => {
+  const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
+  const [isLoading, setIsLoading] = React.useState(true);
+
+  const myTranslateAnimation = {
+    0: {
+      opacity: 0,
+      scale: 0,
+      transform: [{ translateY: 30 }]
+    },
+    .5: {
+      opacity: .5,
+      transform: [{ translateY: 10 }],
+      scale: 1.2
+    },
+
+    1: {
+      opacity: 1,
+      transform: [{ translateY: 0 }],
+      scale: 1
+    }
+  }
+  React.useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false)
+    }, 2000)
+  }, [])
+
+  if (isLoading) {
+    return (
+      <SafeAreaProvider>
+        <Animatable.View
+          animation="fadeIn"
+          style={{ backgroundColor: "#1a202c", flex: 1, alignItems: "center" }}>
+          <Animatable.View
+            delay={900}
+            duration={300}
+            easing={"ease-out"}
+            animation={"bounceIn"}
+            style={{ flex: 4, justifyContent: "center", alignItems: "center" }}>
+            <Text style={{
+              color: "white", fontSize: 30,
+              fontFamily: "Montserrat-SemiBold", marginBottom: 5,
+            }}>Future Infinity</Text>
+            <Text style={{
+              color: "rgba(255,255,255,.8)", fontSize: 18,
+              fontFamily: "Montserrat-Medium", marginBottom: 25,
+            }}>Mobile</Text>
+
+            <ActivityIndicator size="large" color="#319795" />
+          </Animatable.View>
+        </Animatable.View>
+      </SafeAreaProvider>
+    )
+  }
+
+
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "orange" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#1a202c" }}>
       <IconRegistry icons={EvaIconsPack} />
       <ApplicationProvider {...eva} theme={eva.light}>
-        <NavigationContainer>
-
-
-          <Drawer.Navigator
-            screenOptions={{
-              headerShown: false
-            }}
-          >
-            <Drawer.Screen name="Tableau de bord" component={RootStackScreen} />
-            <Drawer.Screen name="Paramètre" component={TabNavigator} />
-            <Drawer.Screen name="Mes Ordres" component={MyOrders} />
-            <Drawer.Screen name="Liste des stratégies" component={StrategiesList} />
-            <Drawer.Screen name="FAQs" component={FAQ} />
-          </Drawer.Navigator>
-        </NavigationContainer>
+        <SafeAreaProvider>
+          <NavigationContainer>
+            {/* <RegistrationStackScreen /> */}
+            <Drawer.Navigator
+              drawerType="slide"
+              screenOptions={{
+                headerShown: false
+              }}
+              initialRouteName={"Tableau de bord"}
+              drawerContent={props => <DrawerContent {...props} />}
+            >
+              <Drawer.Screen name="Tableau de bord" component={Home} />
+              <Drawer.Screen name="Paramètres" component={Parameters} />
+              <Drawer.Screen name="Mes Ordres" component={MyOrders} />
+              <Drawer.Screen name="Liste des stratégies" component={StrategiesList} />
+              <Drawer.Screen name="FAQs" component={FAQ} />
+              <Drawer.Screen name="Profile" component={Profile} />
+            </Drawer.Navigator>
+          </NavigationContainer>
+        </SafeAreaProvider>
       </ApplicationProvider>
     </SafeAreaView>
   )
